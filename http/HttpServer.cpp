@@ -80,29 +80,6 @@ void HttpServer::onMessage(const TcpConnectionPtr& conn, Buffer* buf, Timestamp 
     }
 }
 
-
-void HttpServer::hanleBusyResp(const TcpConnectionPtr& conn, HttpRequest req)
-{
-    try
-    {
-        HttpResponse resp(true);
-        HttpResponseBody respBody;
-        respBody.C = to_string(CURRENT_THREADS_BUSY);
-        respBody.S = false;
-        respBody.M = g_ErrorCodes[CURRENT_THREADS_BUSY];
-        string strBody = respBody.ToJson();
-        resp.setBody(strBody);
-        sendResponse(conn, resp);
-    }
-    catch (const std::exception & e)
-    {
-        LOGI("processRead: exec exception:%s", e.what());
-        conn->send("HTTP/1.1 400 Bad Request\r\n\r\n");
-        conn->shutdown();
-    }
-}
-
-
 //1.问题:为什么一定要用static function,下面是不用static function后的报错
 //ISO C++ forbids taking the address 
 //of an unqualified or parenthesized non-static member function to form a pointer to member function
