@@ -102,7 +102,6 @@ bool HttpContext::parseRequest(Buffer* buf, Timestamp receiveTime)
                         hasMore = false;
                     } 
                 } 
-                    //hasMore = false;
             }
             else
             {
@@ -119,12 +118,8 @@ bool HttpContext::parseRequest(Buffer* buf, Timestamp receiveTime)
                 m_request.setBody(buf->peek(), buf->peek() + static_cast<int>(len));
                 buf->retrieve(len);
                 m_state = kGotAll;
-                // hasMore = false;
             }
-            //else
-            //{
             hasMore = false;
-            //}
         }
     }
     return ok;
