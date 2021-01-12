@@ -13,7 +13,6 @@
 #include "sys/sysinfo.h"
 #endif
 
-using namespace zchs;
 //http服务器
 bool HttpServer::init(const char* ip, short& port, EventLoop* loop)
 {
