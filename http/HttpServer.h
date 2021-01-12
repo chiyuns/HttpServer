@@ -41,10 +41,7 @@ private:
     void onMessage(const TcpConnectionPtr& conn, Buffer* buf, Timestamp receiveTime);
     void processRequestBody(const TcpConnectionPtr& conn, HttpRequest);
     bool onRequest(const TcpConnectionPtr& conn, const HttpRequest& req, HttpResponse* resp);
-
-    //暂时不用
-    void hanleBusyResp(const TcpConnectionPtr& conn, HttpRequest req);
-
+    
 private:
     std::unique_ptr<TcpServer>                     m_server;
     ThreadPool                                     m_threadPool;       //线程池
